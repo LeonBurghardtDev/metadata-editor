@@ -1,6 +1,5 @@
-import piexif
 from PIL import Image
-from datetime import datetime
+import piexif
 
 def get_exif_data(image_path):
     image = Image.open(image_path)
@@ -33,8 +32,11 @@ def save_exif_data(image_path, brand, model, lat, lon, date_time):
         exif_dict["0th"][piexif.ImageIFD.DateTime] = date_time_bytes
         exif_dict["Exif"][piexif.ExifIFD.DateTimeOriginal] = date_time_bytes
         exif_dict["Exif"][piexif.ExifIFD.DateTimeDigitized] = date_time_bytes
-        date_only = date_time.split()[0]
-        exif_dict["GPS"][piexif.GPSIFD.GPSDateStamp] = date_only.encode('utf-8')
+        try:
+            date_only = date_time.split()[0]
+            exif_dict["GPS"][piexif.GPSIFD.GPSDateStamp] = date_only.encode('utf-8')
+        except IndexError:
+            print(f"Error: Invalid date_time format: '{date_time}'")
 
     exif_bytes = piexif.dump(exif_dict)
     image.save(image_path, "jpeg", exif=exif_bytes)
