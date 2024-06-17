@@ -66,7 +66,6 @@ Contributions are welcome! Please feel free to submit a Pull Request or open an 
 Developed by Leon Burghardt
 
 - GitHub: [tr3xxx](https://github.com/tr3xxx)
-- LinkedIn: [Leon Burghardt](https://www.linkedin.com/in/leon-burghardt/)
 
 ## Acknowledgements
 
